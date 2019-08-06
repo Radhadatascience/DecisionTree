@@ -57,18 +57,22 @@ DAY	OUTLOOK	TEMP	HUMIDITY	WIND	PLAYBOLL
 
 df.isnull().sum()
 
+#Train the Dataset
 from sklearn.preprocessing import StandardScalerobj_sc=StandardScaler()
 X_train=obj_sc.fit_transform(X_train)
 X_test=obj_sc.transform(X_test)
 
+#Fit the model
 obj_sc=StandardScaler()
 X_train=obj_sc.fit_transform(X_train)
 X_test=obj_sc.transform(X_test)
 
+#Apply the DecisionTreeClassifier
 from sklearn.tree import DecisionTreeClassifier
 Classifier=DecisionTreeClassifier(random_state=0)
 Classifier.fit(X_train,y_train)
 
+#Test the accuracy
 y_pred=Classifier.predict(X_test)
 from sklearn.metrics import accuracy_score
 accuracy_score()
