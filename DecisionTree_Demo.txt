@@ -1,0 +1,76 @@
+#load the libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+%matplotlib inline
+
+#load the Dataset into pandas
+df=pd.read_csv('E:/playball.csv')
+df.head()
+
+#Tables which loads
+DAY	OUTLOOK	TEMP	HUMIDITY	WIND	PLAYBOLL
+0	1	1	1	1.0	0	NO
+1	2	1	1	1.0	1	NO
+2	3	2	1	1.0	0	NaN
+3	4	3	2	1.0	0	YES
+4	5	3	3	NaN	0	YES
+
+#Remove the NaN
+df.HUMIDITY=df.HUMIDITY.fillna(df.HUMIDITY.median())
+df
+
+DAY	OUTLOOK	TEMP	HUMIDITY	WIND	PLAYBOLL
+0	1	1	1	1.0	0	NO
+1	2	1	1	1.0	1	NO
+2	3	2	1	1.0	0	NaN
+3	4	3	2	1.0	0	YES
+4	5	3	3	1.0	0	YES
+5	6	3	3	1.0	1	NO
+6	7	2	3	1.0	1	YES
+7	8	1	2	1.0	0	NaN
+8	9	1	3	1.0	0	YES
+9	10	3	2	1.0	0	YES
+10	11	1	2	1.0	1	YES
+11	12	2	2	1.0	1	YES
+12	13	2	1	1.0	0	YES
+13	14	3	2	1.0	1	NO
+
+df.PLAYBOLL.fillna(df.PLAYBOLL.value_counts().idxmax(),inplace=True)
+df.head(15)
+DAY	OUTLOOK	TEMP	HUMIDITY	WIND	PLAYBOLL
+0	1	1	1	1.0	0	NO
+1	2	1	1	1.0	1	NO
+2	3	2	1	1.0	0	YES
+3	4	3	2	1.0	0	YES
+4	5	3	3	1.0	0	YES
+5	6	3	3	1.0	1	NO
+6	7	2	3	1.0	1	YES
+7	8	1	2	1.0	0	YES
+8	9	1	3	1.0	0	YES
+9	10	3	2	1.0	0	YES
+10	11	1	2	1.0	1	YES
+11	12	2	2	1.0	1	YES
+12	13	2	1	1.0	0	YES
+13	14	3	2	1.0	1	NO
+
+df.isnull().sum()
+
+from sklearn.preprocessing import StandardScalerobj_sc=StandardScaler()
+X_train=obj_sc.fit_transform(X_train)
+X_test=obj_sc.transform(X_test)
+
+obj_sc=StandardScaler()
+X_train=obj_sc.fit_transform(X_train)
+X_test=obj_sc.transform(X_test)
+
+from sklearn.tree import DecisionTreeClassifier
+Classifier=DecisionTreeClassifier(random_state=0)
+Classifier.fit(X_train,y_train)
+
+y_pred=Classifier.predict(X_test)
+from sklearn.metrics import accuracy_score
+accuracy_score()
+
+Output: 0.8
