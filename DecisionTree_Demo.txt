@@ -79,3 +79,5 @@ from sklearn.metrics import accuracy_score
 accuracy_score()
 
 Output: 0.8
+
+#Done My Changes
